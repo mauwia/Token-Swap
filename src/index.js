@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Web3ReactProvider } from "@web3-react/core";
 import reportWebVitals from "./reportWebVitals";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
+import { getLibrary } from "./utils/getLibrary";
 
 ReactDOM.render(
   <React.StrictMode>
+     <Web3ReactProvider getLibrary={getLibrary}>
     <ReduxProvider store={store}>
       <App />
-    </ReduxProvider>
+    </ReduxProvider></Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

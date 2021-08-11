@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, Grid, Typography } from "@material-ui/core";
 import Header from "../component/Header";
+import DropDown from "../component/Dropdown";
 const useStyles = makeStyles((theme) => ({
   card: {
     height: "50%",
@@ -42,6 +43,27 @@ function SwapCard() {
             <Typography variant="h6">Swap</Typography>
           </Grid>
           <Grid>
+          <Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              className={classes.ethBar}
+            >
+              <Grid style={{ marginLeft: "20px", backgroundColor: "" }}>
+                <DropDown />
+              </Grid>
+              <Grid>
+              <input style={{
+                  backgroundColor:"#212429",
+                  border:0,
+                  fontSize:"20px",
+                  width:"5vw"
+                }} value="0.0"/>
+              </Grid>
+            </Grid>
+          </Grid>
             <Grid
               container
               direction="row"
@@ -68,6 +90,7 @@ function SwapCard() {
                   backgroundColor:"#212429",
                   border:0,
                   fontSize:"20px",
+                  width:"5vw",
                   "&:focus": {
                     border:0
                   }
@@ -75,26 +98,7 @@ function SwapCard() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              className={classes.ethBar}
-            >
-              <Grid style={{ marginLeft: "20px", backgroundColor: "" }}>
-                <Typography>Select A Token</Typography>
-              </Grid>
-              <Grid>
-              <input style={{
-                  backgroundColor:"#212429",
-                  border:0,
-                  fontSize:"20px"
-                }} value="0.0"/>
-              </Grid>
-            </Grid>
-          </Grid>
+     
         </Card>
       </Grid>
     </>
