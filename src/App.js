@@ -3,8 +3,8 @@ import ConnectWallet from "./containers/ConnectWallet";
 import { makeStyles } from "@material-ui/core/styles";
 import { useWeb3React } from "@web3-react/core";
 import SwapCard from "./containers/SwapCard";
-import { initializeWeb3 } from "./contract/functions/web3functions";
-import { useEffect } from "react";
+import { fromWei, initializeWeb3 } from "./contract/functions/web3functions";
+import { useEffect, useState } from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "rgb(2,0,36)",
@@ -19,23 +19,26 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const web3Context = useWeb3React();
   const classes = useStyles();
-  console.log("=======", web3Context);
+  let [tokenBalance, setTokenBalance] = useState(null);
+  let [ethBalance,setEthBalance]=useState(null)
+
   useEffect(() => {
     let init = async () => {
       console.log("here1", web3Context);
       if (web3Context?.library?.currentProvider) {
         await initializeWeb3(
           "0x99e3ca20930121fa16cf1153e3fcdea07cfa66e2",
-          web3Context?.library?.currentProvider,web3Context.account
+          web3Context?.library?.currentProvider,web3Context.account,setTokenBalance,setEthBalance
         );
       }
+
     };
     init();
   }, [web3Context]);
   return (
     <div className={classes.root}>
       <ConnectWallet />
-      <SwapCard />
+      <SwapCard tokenBalance={tokenBalance} account={web3Context.account} ethBalance={ethBalance} />
     </div>
   );
 }
